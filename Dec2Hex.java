@@ -1,46 +1,38 @@
-import java.util.Scanner;
-import java.util.logging.Logger;
-public class Dec2Hex{
+public class Dec2Hex {
+    private static final char[] hexCharacters = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
-	private static int arg1;
-    	public static void main(String[] args)
-	{
-        	if (args.length == 0)
-		{
-        	    System.out.println("Error: No input argument provided. Please provide an integer to convert.");
-            	    return;
-        	}
-        	try
-		{
-	  		setArg1(Integer.parseInt(args[0]));
-        	}
-		catch (NumberFormatException e)
-		{
-            		System.out.println("Error: Invalid input. Please provide an integer to convert.");
-	    		return;
-		}
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Error: No input argument provided. Please provide an integer to convert.");
+        }
 
-		char[] ch = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-        	int rem;
-		int num;
-        	num = getArg1();
-		StringBuilder hexadecimal = new StringBuilder();
-        	System.out.println("Converting the Decimal Value " + num + " to Hex...");
-		while (num != 0)
-		{
-            		rem = num%16;
-            		hexadecimal.insert(0, ch[rem]);
-            		num = num/16;
-        	}
-		System.out.println("Hexadecimal representation is: " + hexadecimal);
-	}
+        try {
+            int decimal = Integer.parseInt(args[0]);
+            String hex = decimalToHexadecimal(decimal);
+            printResult(decimal, hex);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Error: Invalid input. Please provide a valid integer.", e);
+        }
+    }
 
-	public static int getArg1()
-	{
-        	return arg1;
-    	}
-    	public static void setArg1(int inputValue)
-	{
-        	arg1 = inputValue;
-    	}
+    public static String decimalToHexadecimal(int decimal) {
+        if (decimal < 0) {
+            throw new IllegalArgumentException("Negative values are not supported.");
+        }
+
+        StringBuilder hexadecimal = new StringBuilder();
+        if (decimal == 0) {
+            return "0";
+        }
+        while (decimal != 0) {
+            int rem = decimal % 16;
+            hexadecimal.insert(0, hexCharacters[rem]);
+            decimal /= 16;
+        }
+        return hexadecimal.toString();
+    }
+
+    private static void printResult(int decimal, String hex) {
+        System.out.println("Converting the Decimal Value " + decimal + " to Hex: " + hex);
+    }
 }
