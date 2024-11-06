@@ -1,7 +1,0 @@
-*.class 
-junit4.10/*.class
-doc/
-javadoc/
-junit/
-org/
-temp.hamcrest.source/
