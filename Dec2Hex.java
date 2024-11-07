@@ -16,7 +16,7 @@ public class Dec2Hex {
             	printResult(decimal, hex);
 	    } /**handles and displays error*/
         } catch (NumberFormatException e) {
-            System.err.println("Error: Invalid input. Please provide a valid integer.", e);
+            System.err.println("Error: Invalid input. Please provide a valid integer. " + e.getMessage());
         }
     }
 	/**number to hex fucntion perfoming check for negative int and printing error*/
