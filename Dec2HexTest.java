@@ -31,7 +31,7 @@ public class Dec2HexTest {
         System.setErr(new PrintStream(errContent));
 
         /** call main method*/
-        Dec2Hex.main(new String[]{});
+        Dec2Hex.main(new String[0]);
 
         /** print message*/
         assertEquals("Error: No input argument provided. Please provide an integer to convert.\n", errContent.toString());
