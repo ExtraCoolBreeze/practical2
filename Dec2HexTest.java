@@ -51,10 +51,21 @@ public class Dec2HexTest {
 
         /** print error message
 	*/
-        assertEquals("Error: Invalid input. Please provide a valid integer.\n", errContent.toString());
+	string expectedError= "Error: Invalid input. Please provide a valid integer. For input string: \"abc\"\n";
+        assertEquals(expectedError, errContent.toString());
 
         /**reset error
 	*/
         System.setErr(System.err);
     }
+
+    @Test
+    public void testNegativeInput() {
+    	ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+    	System.setErr(new PrintStream(errContent));
+   	Dec2Hex.main(new String[]{"-1"});
+   	assertEquals("Negative values are not supported.\n", errContent.toString());
+    	System.setErr(System.err);
+    }
+
 }
