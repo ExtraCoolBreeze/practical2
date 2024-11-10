@@ -5,11 +5,11 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 import java.lang.Exception;
 
-public class TestRunner {
-    private static final Logger logger = Logger.getLogger(TestRunner.class.getName());
-
 /**test runner class to run the unit test file*/
 public class TestRunner {
+
+    private static final Logger logger = Logger.getLogger(TestRunner.class.getName());
+
     public static void main(String[] args) {
         try {/**runs the class*/
             Result result = JUnitCore.runClasses(Dec2HexTest.class);
