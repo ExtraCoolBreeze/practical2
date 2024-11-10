@@ -26,7 +26,7 @@ public class TestRunner {
                 System.exit(0);
             } /**error handling for exceptions during running*/
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "An exception occurred during test execution: " + e.getMessage());
+            logger.log(Level.SEVERE, String.format("An exception occurred during test execution: %s", e.getMessage()), e);
             System.exit(2);
         }
     }
