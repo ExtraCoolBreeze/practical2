@@ -1,5 +1,5 @@
 public class Dec2Hex {
-	/** list of hex  characters*/
+	/** list of hex characters*/
     private static final char[] hexCharacters = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 	/***main method if no input retusn error*/
     public static void main(String[] args) {
