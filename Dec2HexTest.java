@@ -88,6 +88,7 @@ public class Dec2HexTest {
     
     @After
     public void tearDown() {
+	logger.info("Resetting the System.err")
         System.setErr(System.err);
     }
 }
