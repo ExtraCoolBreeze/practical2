@@ -37,7 +37,7 @@ public class Dec2Hex {
         }
         return hexadecimal.toString();
     }
-	/**prints result of number to hex*/
+	/**prints  result of number to hex*/
     private static void printResult(int decimal, String hex) {
         System.out.println("Converting the Decimal Value " + decimal + " to Hex: " + hex);
     }
