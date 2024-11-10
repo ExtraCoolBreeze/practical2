@@ -1,4 +1,5 @@
 import org.junit.Test;
+import org.junit.After;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.logging.Logger;
@@ -6,9 +7,16 @@ import java.util.logging.Level;
 import static org.junit.Assert.*;
 
 public class Dec2HexTest {
-
 	private static final Logger logger = Logger.getLogger(Dec2HexTest.class.getName());
-	/**normal unit test*/
+	private ByteArrayOutputStream errContent;
+	
+	
+    @Before
+    public void setUp() {
+        errContent = new ByteArrayOutputStream();
+        System.setErr(new PrintStream(errContent));
+    }
+     /**normal unit test*/
     @Test
     public void testNormal() {
         assertEquals("10 should be A", "A", Dec2Hex.decimalToHexadecimal(10));
@@ -56,15 +64,12 @@ public class Dec2HexTest {
         /**testing main*/
         Dec2Hex.main(new String[]{"abc"});
 
-        /** print error message
-	*/
+        /** print error message*/
 	String expectedError = "Error: Invalid input. Please provide a valid integer. For input string: \"abc\"\n";
         logger.warning("Testing non-integer input");
         assertEquals(expectedError, errContent.toString());
 
-
-        /**reset error
-	*/
+        /**reset error*/
         System.setErr(System.err);
     }
 	/**Testing negative input*/
@@ -79,5 +84,10 @@ public class Dec2HexTest {
         assertEquals(expectedError, errContent.toString());
 
     	System.setErr(System.err);
+    }
+    
+    @After
+    public void tearDown() {
+        System.setErr(System.err);
     }
 }
