@@ -3,6 +3,9 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 import java.lang.Exception;
 
+public class TestRunner {
+    private static final Logger logger = Logger.getLogger(TestRunner.class.getName());
+
 /**test runner class to run the unit test file*/
 public class TestRunner {
     public static void main(String[] args) {
@@ -10,20 +13,20 @@ public class TestRunner {
             Result result = JUnitCore.runClasses(Dec2HexTest.class);
 		/**checks for errors*/
             if (result.getFailureCount() > 0) {
-                System.out.println(result.getFailureCount() + " tests failed:");
+                logger.warning(result.getFailureCount() + " tests failed:");
                 /**for each loop that prints the details of errors*/
 		for (Failure failure : result.getFailures()) {
-                    System.out.println(failure.toString());
+                    logger.warning(failure.toString());
                 }
                 System.exit(1);
             } else { /**prints when all tests pass*/
-                System.out.println("All tests passed successfully.");
+                logger.info("All tests passed successfully.");
                 System.exit(0);
             } /**error handling for exceptions during running*/
         } catch (Exception e) {
-            System.err.println("An exception occurred during test execution: " + e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "An exception occurred during test execution: " + e.getMessage());
             System.exit(2);
         }
     }
+  }
 }

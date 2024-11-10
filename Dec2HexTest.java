@@ -1,9 +1,13 @@
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import static org.junit.Assert.*;
 
 public class Dec2HexTest {
+
+	private static final Logger logger = Logger.getLogger(Dec2HexTest.class.getName());
 	/**normal unit test*/
     @Test
     public void testNormal() {
@@ -14,12 +18,14 @@ public class Dec2HexTest {
 	/** exceptional unit test*/
     @Test
     public void testExceptionalNegative() {
+	logger.info("Testing exceptional negative input");
         assertEquals("Negative input should return an empty string", "", Dec2Hex.decimalToHexadecimal(-1));
     }
 	/** extreme unit test*/
     @Test
     public void testExtreme() {
-        assertEquals("The hexadecimal of 1023 should be 3FF", "3FF", Dec2Hex.decimalToHexadecimal(1023));
+        logger.info("Testing extreme input values");
+	assertEquals("The hexadecimal of 1023 should be 3FF", "3FF", Dec2Hex.decimalToHexadecimal(1023));
         assertEquals("The hexadecimal of 2047 should be 7FF", "7FF", Dec2Hex.decimalToHexadecimal(2047));
         assertEquals("The hexadecimal of 65535 should be FFFF", "FFFF", Dec2Hex.decimalToHexadecimal(65535));
     }
@@ -32,9 +38,10 @@ public class Dec2HexTest {
 
         /** call main method*/
         Dec2Hex.main(new String[0]);
-
-        /** print message*/
-        assertEquals("Error: No input argument provided. Please provide an integer to convert.\n", errContent.toString());
+	
+	String expectedError = "Error: No input argument provided. Please provide an integer to convert.\n";
+        logger.warning("Testing no input");
+        assertEquals(expectedError, errContent.toString());
 
         /**reset error */
         System.setErr(System.err);
@@ -51,21 +58,26 @@ public class Dec2HexTest {
 
         /** print error message
 	*/
-	String expectedError= "Error: Invalid input. Please provide a valid integer. For input string: \"abc\"\n";
+	String expectedError = "Invalid input. Please provide a valid integer. For input string: \"abc\"\n";
+        logger.warning("Testing non-integer input");
         assertEquals(expectedError, errContent.toString());
+
 
         /**reset error
 	*/
         System.setErr(System.err);
     }
-
+	/**Testing negative input*/
     @Test
     public void testNegativeInput() {
     	ByteArrayOutputStream errContent = new ByteArrayOutputStream();
     	System.setErr(new PrintStream(errContent));
    	Dec2Hex.main(new String[]{"-1"});
-   	assertEquals("Negative values are not supported.\n", errContent.toString());
+
+   	String expectedError = "Negative values are not supported.\n";
+        logger.warning("Testing negative input: Expected error message logged");
+        assertEquals(expectedError, errContent.toString());
+
     	System.setErr(System.err);
     }
-
 }
