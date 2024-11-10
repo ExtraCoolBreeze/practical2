@@ -58,7 +58,7 @@ public class Dec2HexTest {
 
         /** print error message
 	*/
-	String expectedError = "Invalid input. Please provide a valid integer. For input string: \"abc\"\n";
+	String expectedError = "Error: Invalid input. Please provide a valid integer. For input string: \"abc\"\n";
         logger.warning("Testing non-integer input");
         assertEquals(expectedError, errContent.toString());
 
