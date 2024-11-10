@@ -3,7 +3,6 @@ import java.util.logging.Level;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
-import java.lang.Exception;
 
 /**test runner class to run the unit test file*/
 public class TestRunner {
