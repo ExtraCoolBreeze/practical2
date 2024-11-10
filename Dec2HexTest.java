@@ -43,7 +43,6 @@ public class Dec2HexTest {
 	@Test
     public void testMainNoInputArgument() {
         /**testingoutput*/
-        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
         System.setErr(new PrintStream(errContent));
 
         /** call main method*/
@@ -60,7 +59,6 @@ public class Dec2HexTest {
     @Test
     public void testMainNonIntegerInput() {
         /**testing output*/
-        ByteArrayOutputStream errContent = new ByteArrayOutputStream();
         System.setErr(new PrintStream(errContent));
 
         /**testing main*/
@@ -77,7 +75,7 @@ public class Dec2HexTest {
 	/**Testing negative input*/
     @Test
     public void testNegativeInput() {
-    	ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+	errContent.reset();
     	System.setErr(new PrintStream(errContent));
    	Dec2Hex.main(new String[]{"-1"});
 
